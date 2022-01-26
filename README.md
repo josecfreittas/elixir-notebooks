@@ -1,6 +1,10 @@
 # Elixir notebooks
 
-A collection of general purpose Livebook notebooks.
+## A collection of general purpose Livebook notebooks.
 
-- [Ecto with schemaless queries](https://github.com/josecfreittas/elixir-notebooks/blob/main/ecto-with-schemaless-queries.livemd)
-- [Raw SQL queries with postgrex](https://github.com/josecfreittas/elixir-notebooks/blob/main/raw-sql-queries-with-postgrex.livemd)
+[![Run in Livebook](https://livebook.dev/badge/v1/pink.svg)](https://livebook.dev/run?url=https%3A%2F%2Fgithub.com%2Fjosecfreittas%2Felixir-notebooks%2Fblob%2Fmain%2FREADME.md)
+
+<!-- livebook:{"break_markdown":true} -->
+
+* [Ecto with schemaless queries](/ecto-with-schemaless-queries.livemd)
+* [Raw SQL queries with postgrex](/raw-sql-queries-with-postgrex.livemd)
