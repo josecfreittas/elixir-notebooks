@@ -6,5 +6,5 @@
 
 <!-- livebook:{"break_markdown":true} -->
 
-* [Ecto with schemaless queries](/ecto-with-schemaless-queries.livemd)
-* [Raw SQL queries with postgrex](/raw-sql-queries-with-postgrex.livemd)
+* [Ecto with schemaless queries](./ecto-with-schemaless-queries.livemd)
+* [Raw SQL queries with postgrex](./raw-sql-queries-with-postgrex.livemd)
