@@ -1,0 +1,73 @@
+<!-- vim: syntax=markdown -->
+
+<!-- livebook:{"persist_outputs":true} -->
+
+# Ecto and schemaless queries
+
+## Section
+
+```elixir
+Mix.install([
+  {:jason, "~> 1.3"},
+  {:ecto_sql, "~> 3.7"},
+  {:postgrex, "~> 0.16.1"},
+  {:kino, "~> 0.4.1"}
+])
+```
+
+```output
+:ok
+```
+
+## Setup
+
+```elixir
+defmodule Repo do
+  use Ecto.Repo, adapter: Ecto.Adapters.Postgres, otp_app: :my_app
+end
+
+Application.put_env(:my_app, Repo,
+  username: "postgres",
+  password: "password",
+  database: "postgres",
+  hostname: "localhost",
+  port: 5432,
+  pool_size: 5
+)
+
+Application.ensure_all_started(:ecto_sql)
+Application.ensure_all_started(:postgrex)
+Repo.__adapter__().storage_down(Repo.config())
+Repo.__adapter__().storage_up(Repo.config())
+Repo.start_link()
+
+import Ecto.Query
+```
+
+```output
+Ecto.Query
+```
+
+## Usage
+
+```elixir
+user_id = 4
+
+query =
+  from("posts",
+    where: [user_id: ^user_id],
+    select: [:id, :title, :content]
+  )
+
+Kino.Ecto.new(query, Repo)
+```
+
+```output
+
+00:10:23.564 [debug] QUERY OK source="posts" db=4.2ms idle=1066.3ms
+SELECT count(*) FROM "posts" AS p0 WHERE (p0."user_id" = $1) [4]
+
+00:10:23.570 [debug] QUERY OK source="posts" db=5.3ms idle=1070.8ms
+SELECT p0."id", p0."title", p0."content" FROM "posts" AS p0 WHERE (p0."user_id" = $1) LIMIT $2 OFFSET $3 [4, 10, 0]
+
+```
