@@ -2,9 +2,9 @@
 
 <!-- livebook:{"persist_outputs":true} -->
 
-# Ecto and schemaless queries
+# Ecto with schemaless queries
 
-## Section
+## Install dependencies
 
 ```elixir
 Mix.install([
