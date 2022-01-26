@@ -1,0 +1,54 @@
+<!-- vim: syntax=markdown -->
+
+<!-- livebook:{"persist_outputs":true} -->
+
+# Raw SQL queries with postgrex
+
+## Install dependencies
+
+```elixir
+Mix.install([
+  {:postgrex, "~> 0.16.1"},
+  {:kino, "~> 0.4.1"}
+])
+```
+
+```output
+:ok
+```
+
+## Setup
+
+```elixir
+{:ok, pid} =
+  Postgrex.start_link(
+    hostname: "localhost",
+    username: "postgres",
+    password: "password",
+    database: "postgres",
+    port: 5432
+  )
+
+run = fn query, params ->
+  result = Postgrex.query!(pid, query, params)
+  data = Enum.map(result.rows, fn row -> Enum.zip(result.columns, row) |> Enum.into(%{}) end)
+  IO.inspect("total rows: #{result.num_rows}")
+  Kino.DataTable.new(data)
+end
+```
+
+```output
+#Function<43.65746770/2 in :erl_eval.expr/5>
+```
+
+## Usage
+
+```elixir
+user_id = 4
+
+run.("SELECT id, title, user_id, content FROM posts WHERE user_id = $1", [user_id])
+```
+
+```output
+"total rows: 1"
+```
