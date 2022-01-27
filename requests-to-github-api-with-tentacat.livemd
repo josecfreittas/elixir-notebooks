@@ -1,0 +1,29 @@
+<!-- vim: syntax=markdown -->
+
+# Requests to GitHub API with Tentacat
+
+## Setup
+
+```elixir
+Mix.install([
+  {:tentacat, "~> 2.2"}
+])
+```
+
+The `access_token` will be use to authenticate in the GitHub API,  
+It can be generated here: https://github.com/settings/tokens
+
+```elixir
+access_token = "your_personal_access_token"
+client = Tentacat.Client.new(%{access_token: access_token})
+```
+
+## Usage
+
+```elixir
+Tentacat.get("rate_limit", client, %{})
+```
+
+```elixir
+Tentacat.Repositories.repo_get(client, "edgurgel", "tentacat")
+```

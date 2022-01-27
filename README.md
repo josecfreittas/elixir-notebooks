@@ -8,3 +8,4 @@
 
 * [Ecto with schemaless queries](./ecto-with-schemaless-queries.livemd)
 * [Raw SQL queries with postgrex](./raw-sql-queries-with-postgrex.livemd)
+* [Requests to GitHub API with Tentacat](./requests-to-github-api-with-tentacat.livemd)
