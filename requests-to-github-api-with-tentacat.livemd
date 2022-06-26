@@ -2,13 +2,13 @@
 
 # Requests to GitHub API with Tentacat
 
-## Setup
-
 ```elixir
 Mix.install([
   {:tentacat, "~> 2.2"}
 ])
 ```
+
+## Setup
 
 The `access_token` will be use to authenticate in the GitHub API,  
 It can be generated here: https://github.com/settings/tokens
